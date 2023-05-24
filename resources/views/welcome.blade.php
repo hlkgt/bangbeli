@@ -11,6 +11,7 @@
 
 <body>
     <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    <a href="{{ route('register') }}">Register</a>
 </body>
 
 </html>
