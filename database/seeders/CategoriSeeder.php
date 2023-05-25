@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categori;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategoriSeeder extends Seeder
 {
@@ -13,12 +13,22 @@ class CategoriSeeder extends Seeder
      */
     public function run(): void
     {
-        $categoris = ["makanan","minuman","camilan"];
-
-        for($i = 0; $i < count($categoris);$i++){
-            DB::table('categoris')->insert([
-                'categori' => $categoris[$i]
-            ]);
-        };
+        $categoris = [[
+            "categori" => "makanan",
+            "icon" => "fa-burger"
+        ],[
+            "categori" => "minuman",
+            "icon" => "fa-solid fa-martini-glass-citrus"
+        ],[
+            "categori" => "camilan",
+            "icon" => "fa-cookie-bite"
+        ]];
+        $categoris = collect($categoris)->map(function($categori){
+            return[
+                "categori" => $categori['categori'],
+                "icon" => $categori['icon']
+            ];
+        });
+        Categori::insert($categoris->toArray());
     }
 }

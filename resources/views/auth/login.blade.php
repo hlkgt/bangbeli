@@ -37,6 +37,8 @@
                     <p class="text-red-400 font-semibold">{{ $message }}</p>
                 @enderror
             </div>
+            <p class="py-3">Don't Have Account? <a href="{{ route('register') }}"
+                    class="text-blue-600 underline">Register</a></p>
             <button class="w-full text-center py-3 bg-yellow-400 rounded-xl shadow-lg text-lg font-semibold text-white"
                 type="submit">Login</button>
         </form>
