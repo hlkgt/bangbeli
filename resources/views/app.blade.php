@@ -53,6 +53,14 @@
     </div>
 
     @yield('js')
+    <script>
+        const closeBtn = document.getElementById("close-button");
+        const notificationBox = document.getElementById("notification");
+
+        closeBtn.addEventListener('click', function() {
+            notificationBox.remove();
+        });
+    </script>
 </body>
 
 </html>

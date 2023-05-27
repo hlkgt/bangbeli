@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -35,6 +36,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/dashboard/profile', [AuthController::class, 'deleteProfile'])->name('delete.profile');
 
     Route::get('/dashboard/product', [DashboardController::class, 'product'])->name('dashboard.product');
+    Route::post('/dahsboard/product/add-cart', [ProductController::class, 'addCart'])->name('add-cart');
+
     Route::get('/dashboard/testimoni', [DashboardController::class, 'testimoni'])->name('dashboard.testimoni');
     Route::get('/dashboard/cart', [DashboardController::class, 'cart'])->name('dashboard.cart');
     Route::get('/dashboard/history', [DashboardController::class, 'history'])->name('dashboard.history');
