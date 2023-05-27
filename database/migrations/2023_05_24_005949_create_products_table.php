@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("categori_id");
             $table->string("name");
             $table->text("description");
-            $table->double("price");
+            $table->string("price");
             $table->integer("rate");
             $table->integer("stock");
             $table->integer("sold");
