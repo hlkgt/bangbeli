@@ -8,40 +8,38 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-    public function register(){
+    public function register()
+    {
         return view('auth.register');
     }
 
-    public function newUser(Request $request){
+    public function newUser(Request $request)
+    {
         $credential = $request->validate([
             'name' => 'required|max:12',
-            'email' =>'required|email|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'min:8|max:12',
             'cpassword' => 'min:8|max:12'
         ]);
-        if($credential["password"] !== $credential["cpassword"]){
-            return redirect()->back()->with('error','Different Confirm Password');
+        if ($credential["password"] !== $credential["cpassword"]) {
+            return redirect()->back()->with('error', 'Different Confirm Password');
         };
-        
+
         $user = DB::table('users')->insert([
             'name' => $credential['name'],
             'email' => $credential['email'],
             'password' => Hash::make($credential['password']),
         ]);
 
-        $totalUsers = count(User::all());
-        DataUser::insert([
-            'user_id' => $totalUsers,
-            'status' =>false
-        ]);
-
-        return redirect()->route('login')->with('info','Registration successful, please login.');
+        return redirect()->route('login')->with('info', 'Registration successful, please login.');
     }
 
-    public function login(){
+    public function login()
+    {
         return view('auth.login');
     }
 
@@ -51,13 +49,22 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
+            $getDataUser = DataUser::where('user_id', auth()->user()->id)->first();
+
+            if ($getDataUser === null) {
+                DataUser::insert([
+                    'user_id' => auth()->user()->id,
+                    'status' => false
+                ]);
+            }
+
             return redirect()->intended('/dashboard');
         }
- 
+
         return back()->withErrors([
             'email' => 'Login Gagal',
         ])->onlyInput('email');
@@ -66,8 +73,24 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->invalidate();    
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+    public function deleteProfile(Request $request)
+    {
+        $validated = $request->validate([
+            'delete-account' => 'required'
+        ]);
+        if ($validated['delete-account'] === "DELETE") {
+            $user = User::where('id', auth()->user()->id)->first();
+            $getPathImage = DataUser::where('user_id', $user->id)->first();
+            Storage::delete($getPathImage->photo_profile);
+            $user->delete();
+            return redirect()->route('welcome');
+        } else {
+            return redirect()->back()->with('error-deleting', 'Type Not Matched');
+        }
     }
 }
