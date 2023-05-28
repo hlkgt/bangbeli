@@ -39,6 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/dahsboard/product/add-cart', [ProductController::class, 'addCart'])->name('add-cart');
 
     Route::get('/dashboard/testimoni', [DashboardController::class, 'testimoni'])->name('dashboard.testimoni');
+
     Route::get('/dashboard/cart', [DashboardController::class, 'cart'])->name('dashboard.cart');
+    Route::get('/dashboard/cart/delete-list', [ProductController::class, 'deleteListProduct'])->name('delete-list');
+
     Route::get('/dashboard/history', [DashboardController::class, 'history'])->name('dashboard.history');
 });

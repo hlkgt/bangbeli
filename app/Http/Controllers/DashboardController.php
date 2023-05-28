@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Categori;
 use App\Models\Link;
 use App\Models\Product;
@@ -28,5 +29,17 @@ class DashboardController extends Controller
     {
         $products = Product::all();
         return view('dashboard.product', ['products' => $products]);
+    }
+
+    public function cart()
+    {
+        $countPrice = 0;
+        $productLists = Cart::where('user_id', auth()->user()->id)->get();
+        for ($i = 0; $i < count($productLists); $i++) {
+            $countPrice += $productLists[$i]->price;
+        }
+        $totalPrice = $countPrice * 1000;
+        $formatPrice = number_format($totalPrice, 0, ',', '.');
+        return view('dashboard.cart', ['productLists' => $productLists, 'price' => $formatPrice]);
     }
 }
