@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string("price");
             $table->integer("rate");
             $table->integer("stock");
-            $table->integer("sold");
             $table->timestamps();
             $table->foreign("categori_id")->references("id")->on("categoris")->onDelete("cascade")->onUpdate("cascade");
         });

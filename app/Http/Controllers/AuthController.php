@@ -90,7 +90,7 @@ class AuthController extends Controller
             $user->delete();
             return redirect()->route('welcome');
         } else {
-            return redirect()->back()->with('error-deleting', 'Type Not Matched');
+            return redirect()->back()->with('error', 'Type Not Matched');
         }
     }
 }

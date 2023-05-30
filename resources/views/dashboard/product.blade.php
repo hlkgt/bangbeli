@@ -31,17 +31,12 @@
                 @else
                     <input type="number" id="quantity" placeholder="Berapa Pesananmu?"
                         class="p-2 border-2 border-gray-300 w-full rounded-lg">
-                    <form action="{{ route('add-cart') }}" method="post">
+                    <form action="{{ route('payment') }}" method="post">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $product->id }}">
-                        <input type="hidden" name="name" value="{{ $product->name }}">
-                        <input type="hidden" name="price" value="{{ $product->price }}">
-                        <input type="hidden" name="quantity" id="qty" value="{{ $product->qty }}">
-                        <button type="submit" class="w-full bg-orange-400 py-2 rounded-lg text-white font-semibold">
-                            Pre-order
-                        </button>
+                        <input type="hidden" name="id_product" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" id="qty">
+                        <button class="bg-yellow-400 py-2 text-white font-semibold rounded-lg w-full">Buy Now</button>
                     </form>
-                    <button class="bg-yellow-400 py-2 text-white font-semibold rounded-lg">Buy Now</button>
                 @endif
             </div>
         @endforeach

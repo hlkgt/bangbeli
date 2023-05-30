@@ -9,10 +9,10 @@
                 <i class="fa-solid fa-xmark cursor-pointer p-2 text-2xl" id="close-button"></i>
             </div>
         @endif
-        @if (session('error-deleting'))
+        @if (session('error'))
             <div class="py-3 bg-red-300 text-red-700 px-4 rounded-lg mb-6 flex items-center justify-between"
                 id="notification">
-                <p class="text-lg">{{ session('error-deleting') }}</p>
+                <p class="text-lg">{{ session('error') }}</p>
                 <i class="fa-solid fa-xmark cursor-pointer p-2 text-2xl" id="close-button"></i>
             </div>
         @endif

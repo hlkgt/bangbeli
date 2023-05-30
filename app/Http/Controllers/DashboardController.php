@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\Categori;
-use App\Models\Link;
+use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,15 +31,15 @@ class DashboardController extends Controller
         return view('dashboard.product', ['products' => $products]);
     }
 
-    public function cart()
+    public function testimoni()
     {
-        $countPrice = 0;
-        $productLists = Cart::where('user_id', auth()->user()->id)->get();
-        for ($i = 0; $i < count($productLists); $i++) {
-            $countPrice += $productLists[$i]->price;
-        }
-        $totalPrice = $countPrice * 1000;
-        $formatPrice = number_format($totalPrice, 0, ',', '.');
-        return view('dashboard.cart', ['productLists' => $productLists, 'price' => $formatPrice]);
+        $testimonis = Testimoni::all();
+        return view('dashboard.testimoni', ['testimonis' => $testimonis]);
+    }
+
+    public function history()
+    {
+        $historys = Payment::where('user_id', auth()->user()->id)->get();
+        return view('dashboard.history', ["historys" => $historys]);
     }
 }
