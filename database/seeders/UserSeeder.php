@@ -22,6 +22,10 @@ class UserSeeder extends Seeder
         ]);
         DataUser::insert([
             'user_id' => 1,
+            'username' => 'Admin Leo',
+            'address' => 'Dsn.Disini Ds.Disana Kec.Disono',
+            'photo_profile' => 'photo-profile/foto-adminleo.jpg',
+            'telephone' => '081234561234',
             'status' => false,
         ]);
     }
