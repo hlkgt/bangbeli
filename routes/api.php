@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/dashboard/product/payment/process', [PaymentController::class, 'handlePayment'])->name('handle.payment');
 Route::post('/dashboard/payment/notif', [PaymentController::class, 'handleNotification'])->name('handle.payment.notif');
+Route::post('/dashboard/handle-stock', [PaymentController::class, 'handleStock'])->name('handle.stock');

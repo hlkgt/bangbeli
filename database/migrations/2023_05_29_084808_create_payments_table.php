@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer("quantity")->nullable();
             $table->decimal("price", 9, 2)->default(0);
             $table->string("status")->default("pending");
+            $table->string("snap_token")->nullable();
             $table->timestamps();
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
         });

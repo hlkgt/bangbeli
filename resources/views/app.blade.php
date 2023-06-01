@@ -23,7 +23,8 @@
     @endphp
     <div class="min-h-screen flex">
         <div class="bg-yellow-400 w-72 hidden lg:block">
-            <aside class="h-screen bg-yellow-400 grid grid-cols-1 grid-rows-6 text-white px-12 font-semibold text-xl">
+            <aside
+                class="fixed h-screen bg-yellow-400 grid grid-cols-1 grid-rows-6 text-white px-12 font-semibold text-xl">
                 <div class="row-span-1 flex items-center justify-center text-4xl">
                     <a href="{{ route('dashboard') }}">BangBeli</a>
                 </div>
@@ -42,10 +43,33 @@
                 </form>
             </aside>
         </div>
+        <aside
+            class="fixed lg:hidden h-screen bg-yellow-400 grid grid-cols-1 grid-rows-6 text-white px-12 font-semibold text-xl -translate-x-80 transition-transform duration-700 ease-in-out"
+            id="side-bar">
+            <i class="fa-solid fa-xmark absolute top-8 right-4 text-xl" id="btn-close"></i>
+            <div class="row-span-1 flex items-center justify-center text-4xl relative">
+                <a href="{{ route('dashboard') }}">BangBeli</a>
+            </div>
+            <ul class="row-span-4 flex flex-col gap-6">
+                @foreach ($links as $link)
+                    <li class="flex items-center gap-2"><i class="{{ 'fa-solid ' . $link->icon }}"></i><a
+                            href="{{ route($link->path) }}">{{ $link->text }}</a>
+                    </li>
+                @endforeach
+            </ul>
+            <form action="{{ route('logout') }}" method="post" class="row-span-1 flex items-center">
+                @csrf
+                <button type="submit">Log Out
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </form>
+        </aside>
         <div class="w-full flex flex-col">
             <header
                 class="h-20 bg-yellow-400 px-6 flex justify-between items-center font-semibold text-white capitalize">
-                <div class="text-xl">{{ $breadcrumbPath }}</div>
+                <div class="text-sm lg:text-xl"><i class="fa-solid fa-bars lg:hidden text-xl"
+                        id="btn-show"></i>{{ $breadcrumbPath }}
+                </div>
                 <p class="flex items-center gap-2"><i class="fa-solid fa-user"></i>{{ auth()->user()->name }}</p>
             </header>
             <main class="p-4 flex-1">
@@ -57,10 +81,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="{{config('services.midtrans.sanboxLink')}}"
+        data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+
     <script>
-        $("#close-button").click(function() {
-            $("#notification").remove();
-        })
+        $(function() {
+            $("#btn-show").click(function() {
+                $("#side-bar").removeClass("-translate-x-80");
+            });
+            $("#btn-close").click(function() {
+                $("#side-bar").addClass("-translate-x-80");
+            });
+            $("#close-button").click(function() {
+                $("#notification").remove();
+            });
+        });
     </script>
     @yield('js')
 </body>

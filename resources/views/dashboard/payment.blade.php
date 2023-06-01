@@ -3,15 +3,10 @@
 @section('content')
     <div class="rounded-lg shadow-lg p-8">
         <form action="#" id="form-payment">
-            <div class="mb-4">
-                <input type="hidden" name="user_id" id="user_id" class="w-full p-2 outline-2 border-2 rounded-lg"
-                    placeholder="Input product id" value="{{ auth()->user()->id }}" readonly>
-            </div>
-            <div class="mb-4">
-                <label for="product_id" class="text-xl font-semibold capitalize mb-2">product id</label>
-                <input type="text" name="product_id" id="product_id" class="w-full p-2 outline-2 border-2 rounded-lg"
-                    placeholder="Input product id" value="{{ $list['product_id'] }}" readonly>
-            </div>
+            <input type="hidden" name="user_id" id="user_id" class="w-full p-2 outline-2 border-2 rounded-lg"
+                placeholder="Input product id" value="{{ auth()->user()->id }}" readonly>
+            <input type="hidden" name="product_id" id="product_id" class="w-full p-2 outline-2 border-2 rounded-lg"
+                placeholder="Input product id" value="{{ $list['product_id'] }}" readonly>
             <div class="mb-4">
                 <label for="name" class="text-xl font-semibold capitalize mb-2">name</label>
                 <input type="text" name="name" id="name" class="w-full p-2 outline-2 border-2 rounded-lg"
@@ -60,8 +55,6 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
     <script>
         $(function() {
             $("#form-payment").submit(function(e) {

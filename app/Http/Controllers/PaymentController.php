@@ -60,16 +60,18 @@ class PaymentController extends Controller
                 ]
             ];
 
+            $snapToken = \Midtrans\Snap::getSnapToken($payload);
+
             Payment::insert([
                 'order_id' => $orderId,
                 'user_id' => $request->user_id,
                 'product_name' => $request->product_name,
                 'price' => $request->product_price,
                 'quantity' => $request->product_quantity,
+                'snap_token' => $snapToken,
                 'created_at' => Carbon::now(),
             ]);
 
-            $snapToken = \Midtrans\Snap::getSnapToken($payload);
             $this->response["snap_token"] = $snapToken;
         });
         return response()->json($this->response);
