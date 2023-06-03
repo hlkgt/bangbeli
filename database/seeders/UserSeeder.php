@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'address' => 'Dsn.Disini Ds.Disana Kec.Disono',
             'photo_profile' => 'photo-profile/foto-adminleo.jpg',
             'telephone' => '081234561234',
-            'status' => false,
+            'status' => true,
         ]);
     }
 }

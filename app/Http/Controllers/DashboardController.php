@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categori;
+use App\Models\DataUser;
 use App\Models\Payment;
 use App\Models\Product;
-use App\Models\Testimoni;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -33,8 +32,32 @@ class DashboardController extends Controller
 
     public function testimoni()
     {
-        $testimonis = Testimoni::all();
+        $testimonis = DB::table('testimonis')
+            ->join('users', 'testimonis.user_id', 'users.id')
+            ->join('data_users', 'data_users.user_id', 'testimonis.user_id')
+            ->select('data_users.photo_profile', 'users.name', 'testimonis.*')
+            ->get();
         return view('dashboard.testimoni', ['testimonis' => $testimonis]);
+    }
+
+    public function showTestimoni()
+    {
+        $dataUser = DataUser::where('user_id', auth()->user()->id)->first();
+        if ($dataUser->status === 0) {
+            return redirect()->route('dashboard.profile')->with('error', 'Lengkapi Profile Terlebih Dahulu');
+        }
+        return view('dashboard.create_testimoni');
+    }
+
+    public function myTestimoni()
+    {
+        $myTesimonis = DB::table('testimonis')
+            ->join('users', 'testimonis.user_id', 'users.id')
+            ->join('data_users', 'data_users.user_id', 'testimonis.user_id')
+            ->select('data_users.photo_profile', 'users.name', 'testimonis.*')
+            ->where('data_users.user_id', auth()->user()->id)
+            ->get();
+        return view('dashboard.my_testimoni', ['myTestimonis' => $myTesimonis]);
     }
 
     public function history()

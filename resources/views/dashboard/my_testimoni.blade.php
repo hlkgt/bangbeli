@@ -9,13 +9,13 @@
     @endif
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 flex items-center py-2 rounded-xl gap-4">
-            <h1 class="text-xl">Semua Ulasan Akan Ditampilkan Disini</h1>
-            <a href="{{ route('my.testimoni') }}" class="underline text-blue-400">Ulasan Saya</a>
+            <h1 class="text-xl">Semua Ulasan Kamu Akan Ditampilkan Disini</h1>
+            <a href="{{ route('dashboard.testimoni') }}" class="underline text-blue-400">Semua Ulasan</a>
             <a href="{{ route('show.create.testimoni') }}"
                 class="py-2 px-3 bg-blue-400 rounded-xl font-semibold text-white">Tambah
                 Ulasan</a>
         </div>
-        @foreach ($testimonis as $testimoni)
+        @foreach ($myTestimonis as $testimoni)
             <div class="col-span-4 flex flex-col rounded-lg shadow-lg">
                 <div class="flex items-center gap-4 p-4">
                     <img src="{{ asset('storage/' . $testimoni->photo_profile) }}" alt="foto-profile"

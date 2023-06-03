@@ -81,7 +81,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="{{config('services.midtrans.sanboxLink')}}"
+    <script type="text/javascript" src="{{ config('services.midtrans.sanboxLink') }}"
         data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 
     <script>
@@ -95,6 +95,10 @@
             $("#close-button").click(function() {
                 $("#notification").remove();
             });
+
+            setTimeout(() => {
+                $("#notification").remove();
+            }, 5000);
         });
     </script>
     @yield('js')

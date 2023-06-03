@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestimoniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/dashboard/product/payment', [PaymentController::class, 'payment'])->name('payment');
 
     Route::get('/dashboard/testimoni', [DashboardController::class, 'testimoni'])->name('dashboard.testimoni');
+    Route::get('/dashboard/create-testimoni', [DashboardController::class, 'showTestimoni'])->name('show.create.testimoni');
+    Route::get('/dashboard/ulasan-saya', [DashboardController::class, 'myTestimoni'])->name('my.testimoni');
+    Route::post('/dashboard/create-testimoni', [TestimoniController::class, 'createTestimoni'])->name('create.testimoni');
 
     Route::get('/dashboard/history', [DashboardController::class, 'history'])->name('dashboard.history');
 });

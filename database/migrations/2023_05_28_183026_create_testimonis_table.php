@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('testimonis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id");
-            $table->integer("rate");
-            $table->text("description");
+            $table->integer("rate")->default(5);
+            $table->text("description")->nullable();
             $table->timestamps();
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade")->onUpdate("cascade");
         });
