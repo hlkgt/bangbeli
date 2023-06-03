@@ -33,6 +33,7 @@ class AuthController extends Controller
             'name' => $credential['name'],
             'email' => $credential['email'],
             'password' => Hash::make($credential['password']),
+            'role' => 'client'
         ]);
 
         return redirect()->route('login')->with('info', 'Registration successful, please login.');

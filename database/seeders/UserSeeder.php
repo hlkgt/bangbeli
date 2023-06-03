@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
         User::insert([
             "name" => "admin Leo",
             "email" => "adminleo@gmail.com",
-            "password" => Hash::make("adminleo123")
+            "password" => Hash::make("adminleo123"),
+            "role" => "admin"
         ]);
         DataUser::insert([
             'user_id' => 1,

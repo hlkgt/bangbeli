@@ -31,7 +31,10 @@
                             <p><i class="fa-solid fa-user mr-1"></i>{{ $usr->name }} | <i
                                     class="fa-solid fa-envelope mr-1"></i>{{ $usr->email }}</p>
                             <p><i class="fa-solid fa-phone mr-1"></i>{{ $usr->telephone }}</p>
-                            <div class="flex justify-center items-center">
+                            <div
+                                class="@if (auth()->user()->role === 'admin') hidden
+                            @else
+                                flex @endif justify-center items-center">
                                 <form action="{{ route('delete.profile') }}" method="post" class="p-4">
                                     @csrf
                                     @method('delete')
@@ -98,7 +101,10 @@
                                 <p class="text-red-400">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-4">
+                        <div
+                            class="mb-4 @if (auth()->user()->role === 'admin') hidden
+                        @else
+                            block @endif">
                             <label for="photo_profile"
                                 class="@error('photo_profile') text-red-400  @enderror text-xl font-semibold capitalize">photo
                                 profile</label>
