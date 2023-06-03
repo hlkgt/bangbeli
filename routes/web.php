@@ -19,15 +19,14 @@ use App\Http\Controllers\TestimoniController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
-
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'newUser'])->name('register.account');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('login.account');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+})->name('welcome')->middleware('guest');
+Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
+Route::post('/register', [AuthController::class, 'newUser'])->name('register.account')->middleware('guest');
+Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login.account')->middleware('guest');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -48,4 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/dashboard/create-testimoni', [TestimoniController::class, 'createTestimoni'])->name('create.testimoni');
 
     Route::get('/dashboard/history', [DashboardController::class, 'history'])->name('dashboard.history');
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
