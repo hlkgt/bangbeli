@@ -37,7 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/dashboard/profile', [AuthController::class, 'deleteProfile'])->name('delete.profile');
 
     Route::get('/dashboard/product', [DashboardController::class, 'product'])->name('dashboard.product');
-    Route::post('/dahsboard/product/add-cart', [ProductController::class, 'addCart'])->name('add-cart');
+    Route::get('/dashboard/product/update-view', [ProductController::class, 'showUpdateView'])->name('view.update.product');
+    Route::post('/dashboard/product/update', [ProductController::class, 'updateProduct'])->name('update.product');
 
     Route::post('/dashboard/product/payment', [PaymentController::class, 'payment'])->name('payment');
 

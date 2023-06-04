@@ -17,26 +17,38 @@
             </div>
         @endif
         @foreach ($products as $product)
-            <div class="col-span-1 rounded-xl shadow-xl p-6 flex flex-col gap-2">
-                <img src="..." alt="food-image" width="200" class="mx-auto">
-                <h1 class="text-center font-semibold text-xl">{{ $product->name }}</h1>
-                <p>{{ $product->description }}</p>
-                <p>Price : {{ $product->price }}</p>
-                <p>Stock : {{ $product->stock }}</p>
-                <p>{{ $product->rate }}</p>
-                @if ($product->stock === 0)
-                    <input placeholder="Sorry Sold !" class="p-2 border-2 border-gray-300 w-full rounded-lg"
-                        disabled="true">
-                    <button class="bg-gray-400 py-2 text-white font-semibold rounded-lg" disabled="true">SOLD</button>
+            <div class="col-span-1 rounded-xl shadow-xl p-6 flex flex-col justify-between">
+                <div class="flex flex-col">
+                    <img src="{{ asset('storage/photo-profile/foto-adminleo.jpg') }}" alt="food-image" width="200"
+                        class="mx-auto">
+                    <h1 class="text-center font-semibold text-xl">{{ $product->name }}</h1>
+                    <p>{{ $product->description }}</p>
+                    <p>Harga : {{ $product->price }}</p>
+                    <p>Stock : {{ $product->stock }} Barang</p>
+                    <p>{{ $product->rate }} ( {{ $product->sold }} )</p>
+                </div>
+                @if (auth()->user()->role === 'admin')
+                    <a href="{{ url('/dashboard/product/update-view?product-id=') . $product->id }}"
+                        class="bg-blue-400 py-2 text-white font-semibold rounded-lg w-full text-center">Ubah Product</a>
                 @else
-                    <input type="number" id="quantity" placeholder="Berapa Pesananmu?"
-                        class="p-2 border-2 border-gray-300 w-full rounded-lg">
-                    <form action="{{ route('payment') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="id_product" value="{{ $product->id }}">
-                        <input type="hidden" name="quantity" id="qty">
-                        <button class="bg-yellow-400 py-2 text-white font-semibold rounded-lg w-full">Buy Now</button>
-                    </form>
+                    <div class="flex flex-col gap-2">
+                        @if ($product->stock === 0)
+                            <input placeholder="Sorry Sold !" class="p-2 border-2 border-gray-300 w-full rounded-lg"
+                                disabled="true">
+                            <button class="bg-gray-400 py-2 text-white font-semibold rounded-lg"
+                                disabled="true">Habis</button>
+                        @else
+                            <input type="number" id="quantity" placeholder="Berapa Pesananmu?"
+                                class="p-2 border-2 border-gray-300 w-full rounded-lg">
+                            <form action="{{ route('payment') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id_product" value="{{ $product->id }}">
+                                <input type="hidden" name="quantity" id="qty">
+                                <button class="bg-yellow-400 py-2 text-white font-semibold rounded-lg w-full">Beli
+                                    Sekarang</button>
+                            </form>
+                        @endif
+                    </div>
                 @endif
             </div>
         @endforeach
