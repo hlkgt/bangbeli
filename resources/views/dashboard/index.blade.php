@@ -1,73 +1,49 @@
 @extends('app')
 
 @section('content')
-    <div class="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-6 gap-4">
-        @foreach ($categories as $categori)
-            @php
-                $bgColor = ['bg-red-300', 'bg-blue-300', 'bg-teal-300'];
-            @endphp
-            <div
-                class="lg:row-start-1 col-span-1 lg:col-span-4 rounded-lg shadow-md {{ $bgColor[$categori->id - 1] }} py-6 flex justify-center items-center gap-2 text-xl font-semibold text-white">
-                <i class="fa-solid {{ $categori->icon }}"></i>
-                <p class="capitalize">{{ $categori->categori }}</p>
-            </div>
-        @endforeach
-        <div class="row-start-1 lg:row-start-2 lg:row-end-7 lg:col-span-12 rounded-xl">
-            <canvas id="myChart"></canvas>
+    <div class="grid grid-cols-12 gap-12">
+        <div class="col-span-12 grid grid-cols-12 gap-3">
+            <h1 class="col-span-12 text-center text-2xl font-bold">--- Kategori Pesanan ---</h1>
+            @foreach ($categories as $categori)
+                <div
+                    class="h-12 col-span-12 md:col-span-4 rounded-xl flex gap-2 flex items-center justify-center bg-yellow-400 text-xl capitalize font-bold text-white py-8">
+                    <i class="fa-solid {{ $categori->icon }}"></i>
+                    <h1>{{ $categori->categori }}</h1>
+                </div>
+            @endforeach
+        </div>
+        <div class="col-span-12 grid grid-cols-12 gap-3 rounded-xl">
+            <h1 class="col-span-12 text-center text-2xl font-bold">--- Menu Unggulan ---</h1>
+            @foreach ($products as $product)
+                <div class="col-span-12 md:col-span-4 rounded-xl shadow-xl p-6 flex flex-col gap-2">
+                    <img src="{{ asset('storage/photo-profile/foto-adminleo.jpg') }}" alt="food-image" width="200"
+                        class="mx-auto">
+                    <h1 class="text-center font-semibold text-xl">{{ $product->name }}</h1>
+                    <p>{{ $product->description }}</p>
+                    <p>Price : {{ $product->price }}</p>
+                    <p>Stock : {{ $product->stock }}</p>
+                    <p>{{ $product->rate }}</p>
+                    <a href="{{ route('dashboard.product') }}"
+                        class="text-center bg-yellow-400 py-4 text-white font-semibold rounded-lg w-full capitalize">beli
+                        sekarang</a>
+                </div>
+            @endforeach
+        </div>
+        <div class="col-span-12 grid grid-cols-12 gap-12 md:gap-3 rounded-xl">
+            <h1 class="col-span-12 text-center text-2xl font-bold">--- Ulasan Pelanggan ---</h1>
+            @foreach ($testimonis as $testimoni)
+                <div class="col-span-12 md:col-span-4 flex flex-col rounded-lg shadow-lg">
+                    <div class="flex items-center gap-4 p-4">
+                        <img src="{{ asset('storage/' . $testimoni->photo_profile) }}" alt="foto-profile"
+                            class="w-16 rounded-full">
+                        <div class="flex flex-col">
+                            <h1 class="text-lg font-semibold">{{ $testimoni->name }}</h1>
+                            <span>{{ $testimoni->rate }}</span>
+                        </div>
+                    </div>
+                    <p class="px-4 py-2">{{ $testimoni->description }}</p>
+                </div>
+            @endforeach
         </div>
     </div>
-@endsection
-
-@section('js')
-    <script>
-        // Data bulan dan nilai makanan, minuman, dan camilan
-        const data = {
-            labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
-                "November", "Desember"
-            ],
-            datasets: [{
-                    label: "Makanan",
-                    data: [10, 15, 8, 12, 6, 9, 13, 11, 7, 14, 10, 16],
-                    backgroundColor: "#fca5a5"
-                },
-                {
-                    label: "Minuman",
-                    data: [8, 11, 9, 14, 7, 10, 12, 16, 9, 13, 11, 15],
-                    backgroundColor: "#93c5fd"
-                },
-                {
-                    label: "Camilan",
-                    data: [5, 7, 10, 6, 9, 11, 8, 14, 10, 12, 7, 13],
-                    backgroundColor: "#5eead4"
-                }
-            ]
-        };
-
-        // Konfigurasi chart
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Bulan'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Jumlah'
-                        },
-                        suggestedMin: 0
-                    }
-                }
-            }
-        };
-
-        // Membuat chart baru
-        const myChart = new Chart(document.getElementById("myChart"), config);
-    </script>
 @endsection

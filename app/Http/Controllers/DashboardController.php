@@ -13,7 +13,14 @@ class DashboardController extends Controller
     public function index()
     {
         $categories = Categori::all();
-        return view('dashboard.index', ['categories' => $categories]);
+        $products = Product::where('rate', 5)->paginate(3);
+        $testimonis = DB::table('testimonis')
+            ->join('users', 'testimonis.user_id', 'users.id')
+            ->join('data_users', 'data_users.user_id', 'testimonis.user_id')
+            ->select('data_users.photo_profile', 'users.name', 'testimonis.*')
+            ->where('rate', 5)
+            ->paginate(6);
+        return view('dashboard.index', ['categories' => $categories, 'products' => $products, 'testimonis' => $testimonis]);
     }
     public function profile()
     {

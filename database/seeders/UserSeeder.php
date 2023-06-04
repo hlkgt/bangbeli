@@ -29,5 +29,19 @@ class UserSeeder extends Seeder
             'telephone' => '081234561234',
             'status' => true,
         ]);
+        User::insert([
+            "name" => "Leo",
+            "email" => "leo@gmail.com",
+            "password" => Hash::make("leoleoleo"),
+            "role" => "client"
+        ]);
+        DataUser::insert([
+            'user_id' => 2,
+            'username' => 'Leo Marselio',
+            'address' => 'Dsn.Disini Ds.Disana Kec.Disono',
+            'photo_profile' => 'photo-profile/foto-adminleo.jpg',
+            'telephone' => '081234561234',
+            'status' => true,
+        ]);
     }
 }

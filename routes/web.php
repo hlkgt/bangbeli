@@ -21,7 +21,7 @@ use App\Http\Controllers\TestimoniController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 })->name('welcome')->middleware('guest');
 Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
 Route::post('/register', [AuthController::class, 'newUser'])->name('register.account')->middleware('guest');

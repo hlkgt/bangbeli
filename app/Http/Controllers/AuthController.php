@@ -26,7 +26,7 @@ class AuthController extends Controller
             'cpassword' => 'min:8|max:12'
         ]);
         if ($credential["password"] !== $credential["cpassword"]) {
-            return redirect()->back()->with('error', 'Different Confirm Password');
+            return redirect()->back()->with('error', 'Confirm Password Tidak Sesuai');
         };
 
         $user = DB::table('users')->insert([
@@ -36,7 +36,7 @@ class AuthController extends Controller
             'role' => 'client'
         ]);
 
-        return redirect()->route('login')->with('info', 'Registration successful, please login.');
+        return redirect()->route('login')->with('info', 'Daftar Berhasil, Silahkan Login Kembali');
     }
 
     public function login()
@@ -91,7 +91,7 @@ class AuthController extends Controller
             $user->delete();
             return redirect()->route('welcome');
         } else {
-            return redirect()->back()->with('error', 'Type Not Matched');
+            return redirect()->back()->with('error', 'Pengetikan Tidak Valid, Yang Benar DELETE');
         }
     }
 }

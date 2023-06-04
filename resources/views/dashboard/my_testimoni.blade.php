@@ -9,7 +9,11 @@
     @endif
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 flex items-center py-2 rounded-xl gap-4">
-            <h1 class="text-xl">Semua Ulasan Kamu Akan Ditampilkan Disini</h1>
+            @if (count($myTestimonis) <= 0)
+                <h1 class="text-xl">Kamu Belum Mengulas Apapun</h1>
+            @else
+                <h1 class="text-xl">Semua Ulasan Kamu</h1>
+            @endif
             <a href="{{ route('dashboard.testimoni') }}" class="underline text-blue-400">Semua Ulasan</a>
             <a href="{{ route('show.create.testimoni') }}"
                 class="py-2 px-3 bg-blue-400 rounded-xl font-semibold text-white">Tambah

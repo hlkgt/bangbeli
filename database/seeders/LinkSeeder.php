@@ -14,10 +14,10 @@ class LinkSeeder extends Seeder
     public function run(): void
     {
         $links = [
-            ['icon' => 'fa-user', 'path' => 'dashboard.profile', 'text' => 'Profile'],
-            ['icon' => 'fa-list', 'path' => 'dashboard.product', 'text' => 'Product'],
-            ['icon' => 'fa-calendar-days', 'path' => 'dashboard.testimoni', 'text' => 'Testimoni'],
-            ['icon' => 'fa-pen-to-square', 'path' => 'dashboard.history', 'text' => 'History']
+            ['icon' => 'fa-user', 'path' => 'dashboard.profile', 'text' => 'Pengguna'],
+            ['icon' => 'fa-list', 'path' => 'dashboard.product', 'text' => 'Menu'],
+            ['icon' => 'fa-calendar-days', 'path' => 'dashboard.testimoni', 'text' => 'Ulasan'],
+            ['icon' => 'fa-pen-to-square', 'path' => 'dashboard.history', 'text' => 'Riwayat']
         ];
         $links = collect($links)->map(function($links){
             return[

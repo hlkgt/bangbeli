@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $dataUser->photo_profile = $path;
         $dataUser->status = true;
         $dataUser->save();
-        return redirect()->route('dashboard.profile')->with('success', 'Created Data Succesfull');
+        return redirect()->route('dashboard.profile')->with('success', 'Berhasil Menambahkan Data Pengguna');
     }
 
     public function updateProfile(Request $request)
@@ -74,6 +74,6 @@ class ProfileController extends Controller
             }
         }
 
-        return redirect()->route('dashboard.profile')->with('success', 'Update Profile Successful');
+        return redirect()->route('dashboard.profile')->with('success', 'Data Pengguna Berhasil Diubah');
     }
 }

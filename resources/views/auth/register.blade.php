@@ -20,9 +20,10 @@
                 </div>
             @endif
             @csrf
+            <h1 class="text-center my-2 text-yellow-400 text-4xl font-bold">BangBeli</h1>
             <div class="mb-2 flex flex-col">
                 <label for="name" class="text-lg mb-2 font-semibold">Name</label>
-                <input type="text" name="name" id="name" placeholder="Input Username"
+                <input type="text" name="name" id="name" placeholder="Masukkan Username"
                     class="border-2 p-2 rounded-md @error('name') outline-2 border-red-400 outline-red-400 @enderror"
                     value="{{ old('name') }}" autofocus />
                 @error('name')
@@ -31,7 +32,7 @@
             </div>
             <div class="mb-2 flex flex-col">
                 <label for="email" class="text-lg mb-2 font-semibold">Email</label>
-                <input type="email" name="email" id="email" placeholder="Input Email"
+                <input type="email" name="email" id="email" placeholder="Masukkan Email"
                     class="border-2 p-2 rounded-md @error('email') outline-2 border-red-400 outline-red-400 @enderror"
                     value="{{ old('email') }}" />
                 @error('email')
@@ -40,7 +41,7 @@
             </div>
             <div class="mb-2 flex flex-col">
                 <label for="password" class="text-lg mb-2 font-semibold">Password</label>
-                <input type="password" name="password" id="password" placeholder="Input Password"
+                <input type="password" name="password" id="password" placeholder="Masukkan Password"
                     class="border-2 p-2 rounded-md @error('password') outline-2  border-red-400 outline-red-400 @enderror" />
                 @error('password')
                     <p class="text-red-400 font-semibold">{{ $message }}</p>
@@ -54,17 +55,19 @@
                     <p class="text-red-400 font-semibold">{{ $message }}</p>
                 @enderror
             </div>
-            <p class="mt-2 mb-4">Already have an account? <a href="{{ route('login') }}" class="text-blue-600 underline">Login</a></p>
-            <button class="w-full text-center py-3 bg-yellow-400 rounded-xl shadow-lg text-lg font-semibold text-white"
-                type="submit">Register</button>
+            <p class="text-center mt-2 mb-4 capitalize">sudah mempunyai akun? <a href="{{ route('login') }}"
+                    class="text-blue-600 underline">masuk</a></p>
+            <button
+                class="w-full text-center py-3 bg-yellow-400 rounded-xl shadow-lg text-lg font-semibold text-white capitalize"
+                type="submit">daftar</button>
         </form>
     </div>
 
     <script>
         const notif = document.querySelector('#notification')
-        notif.addEventListener('click', function() {
+        setTimeout(() => {
             notif.remove();
-        })
+        }, 5000);
     </script>
 </body>
 

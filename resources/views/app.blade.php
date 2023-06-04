@@ -37,7 +37,7 @@
                 </ul>
                 <form action="{{ route('logout') }}" method="post" class="row-span-1 flex items-center">
                     @csrf
-                    <button type="submit">Log Out
+                    <button type="submit">Keluar
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
                 </form>
@@ -59,7 +59,7 @@
             </ul>
             <form action="{{ route('logout') }}" method="post" class="row-span-1 flex items-center">
                 @csrf
-                <button type="submit">Log Out
+                <button type="submit">Keluar
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </button>
             </form>
@@ -75,6 +75,9 @@
             <main class="p-4 flex-1">
                 @yield('content')
             </main>
+            <footer class="h-12 flex justify-center items-center mt-12 bg-yellow-400 text-lg font-semibold text-white">
+                &copy; Copyright All Reverse created by <a href="https://github.com/hlkgt">Leo Marselio</a>
+            </footer>
         </div>
     </div>
 
