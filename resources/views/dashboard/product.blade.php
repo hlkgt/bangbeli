@@ -23,9 +23,10 @@
                         class="mx-auto">
                     <h1 class="text-center font-semibold text-xl">{{ $product->name }}</h1>
                     <p>{{ $product->description }}</p>
-                    <p>Harga : {{ $product->price }}</p>
-                    <p>Stock : {{ $product->stock }} Barang</p>
-                    <p>{{ $product->rate }} ( {{ $product->sold }} )</p>
+                    <p><b>Harga :</b> {{ $product->price }}</p>
+                    <p><b>Stock :</b> {{ $product->stock }} Barang</p>
+                    <p><b>Terjual :</b> {{ $product->sold }}</p>
+                    <x-star :rate="$product->rate"></x-star>
                 </div>
                 @if (auth()->user()->role === 'admin')
                     <a href="{{ url('/dashboard/product/update-view?product-id=') . $product->id }}"

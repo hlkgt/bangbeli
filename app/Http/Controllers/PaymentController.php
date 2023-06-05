@@ -36,7 +36,8 @@ class PaymentController extends Controller
             $list = [
                 'product_id' => $product->id,
                 'product_name' => $product->name,
-                'price' => ((int)$product->price * (int)$request->quantity) * 1000,
+                'price' => $product->price,
+                'total' => ((int)$product->price * (int)$request->quantity) * 1000,
                 'quantity' => $request->quantity,
             ];
             return view('dashboard.payment', ['user' => $user, 'list' => $list]);

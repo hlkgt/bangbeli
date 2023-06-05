@@ -20,13 +20,13 @@
                 Ulasan</a>
         </div>
         @foreach ($myTestimonis as $testimoni)
-            <div class="col-span-4 flex flex-col rounded-lg shadow-lg">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col rounded-lg shadow-lg">
                 <div class="flex items-center gap-4 p-4">
                     <img src="{{ asset('storage/' . $testimoni->photo_profile) }}" alt="foto-profile"
                         class="w-16 rounded-full">
                     <div class="flex flex-col">
                         <h1 class="text-lg font-semibold">{{ $testimoni->name }}</h1>
-                        <span>{{ $testimoni->rate }}</span>
+                        <x-star :rate="$testimoni->rate"></x-star>
                     </div>
                 </div>
                 <p class="px-4 py-2">{{ $testimoni->description }}</p>

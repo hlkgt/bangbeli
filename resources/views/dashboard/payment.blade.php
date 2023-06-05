@@ -8,17 +8,17 @@
             <input type="hidden" name="product_id" id="product_id" class="w-full p-2 outline-2 border-2 rounded-lg"
                 placeholder="Input product id" value="{{ $list['product_id'] }}" readonly>
             <div class="mb-4">
-                <label for="name" class="text-xl font-semibold capitalize mb-2">name</label>
+                <label for="name" class="text-xl font-semibold capitalize mb-2">nama</label>
                 <input type="text" name="name" id="name" class="w-full p-2 outline-2 border-2 rounded-lg"
                     placeholder="Input name" value="{{ $user->username }}" readonly>
             </div>
             <div class="mb-4">
-                <label for="address" class="text-xl font-semibold capitalize mb-2">address</label>
+                <label for="address" class="text-xl font-semibold capitalize mb-2">alamat</label>
                 <input type="text" name="address" id="address" class="w-full p-2 outline-2 border-2 rounded-lg"
                     placeholder="Input address" value="{{ $user->address }}" readonly>
             </div>
             <div class="mb-4">
-                <label for="telephone" class="text-xl font-semibold capitalize mb-2">telephone</label>
+                <label for="telephone" class="text-xl font-semibold capitalize mb-2">ponsel</label>
                 <input type="text" name="telephone" id="telephone" class="w-full p-2 outline-2 border-2 rounded-lg"
                     placeholder="Input telephone" value="{{ $user->telephone }}" readonly>
             </div>
@@ -33,23 +33,29 @@
                     placeholder="Input email" value="{{ $user->email }}" readonly>
             </div>
             <div class="mb-4">
-                <label for="product_name" class="text-xl font-semibold capitalize mb-2">Product Name</label>
+                <label for="product_name" class="text-xl font-semibold capitalize mb-2">barang pembelian</label>
                 <input type="text" name="product_name" id="product_name" class="w-full p-2 outline-2 border-2 rounded-lg"
                     placeholder="Input name product" value="{{ $list['product_name'] }}" readonly>
             </div>
             <div class="mb-4">
-                <label for="product_price" class="text-xl font-semibold capitalize mb-2">Price</label>
+                <label for="product_price" class="text-xl font-semibold capitalize mb-2">harga</label>
                 <input type="text" name="product_price" id="product_price"
                     class="w-full p-2 outline-2 border-2 rounded-lg" placeholder="Input price" value="{{ $list['price'] }}"
                     readonly>
             </div>
             <div class="mb-4">
-                <label for="product_quantity" class="text-xl font-semibold capitalize mb-2">Quantity</label>
+                <label for="product_quantity" class="text-xl font-semibold capitalize mb-2">jumlah pembelian</label>
                 <input type="number" name="product_quantity" id="product_quantity"
                     class="w-full p-2 outline-2 border-2 rounded-lg" placeholder="Input quantity"
                     value="{{ $list['quantity'] }}" readonly>
             </div>
-            <button class="py-3 bg-teal-400 text-lg w-full rounded-lg font-semibold text-white">Pay</button>
+            <div class="mb-4">
+                <label for="product_price" class="text-xl font-semibold capitalize mb-2">total pembayaran</label>
+                <input type="text" name="total_payment" id="total_payment"
+                    class="w-full p-2 outline-2 border-2 rounded-lg" placeholder="Input price" value="{{ $list['total'] }}"
+                    readonly>
+            </div>
+            <button class="py-3 bg-teal-400 text-lg w-full rounded-lg font-semibold text-white">Bayar</button>
         </form>
     </div>
 @endsection
@@ -71,7 +77,7 @@
                         user_id: $("#user_id").val(),
                         product_id: $("#product_id").val(),
                         product_name: $("#product_name").val(),
-                        product_price: $("#product_price").val(),
+                        product_price: $("#total_payment").val(),
                         product_quantity: $("#product_quantity").val(),
                     },
                     success: function(response) {

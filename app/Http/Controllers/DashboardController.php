@@ -13,7 +13,7 @@ class DashboardController extends Controller
     public function index()
     {
         $categories = Categori::all();
-        $products = Product::where('rate', 5)->paginate(3);
+        $products = Product::orderBy('sold', 'DESC')->paginate(3);
         $testimonis = DB::table('testimonis')
             ->join('users', 'testimonis.user_id', 'users.id')
             ->join('data_users', 'data_users.user_id', 'testimonis.user_id')

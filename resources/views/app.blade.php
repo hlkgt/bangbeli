@@ -8,6 +8,7 @@
     <title>Dashboard - BangBeli</title>
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/solid.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/regular.css') }}">
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -75,18 +76,18 @@
             <main class="p-4 flex-1">
                 @yield('content')
             </main>
-            <footer class="h-12 flex justify-center items-center mt-12 bg-yellow-400 text-lg font-semibold text-white">
-                &copy; Copyright All Reverse created by <a href="https://github.com/hlkgt">Leo Marselio</a>
+            <footer
+                class="h-12 flex justify-center items-center mt-12 bg-yellow-400 text-lg font-semibold text-white gap-2">
+                &copy; Copyright All Reverse created by<a href="https://github.com/hlkgt" class="underline"
+                    target="_blank">Leo Marselio</a>
             </footer>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="{{ config('services.midtrans.sanboxLink') }}"
         data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
-
     <script>
         $(function() {
             $("#btn-show").click(function() {
@@ -98,7 +99,6 @@
             $("#close-button").click(function() {
                 $("#notification").remove();
             });
-
             setTimeout(() => {
                 $("#notification").remove();
             }, 5000);

@@ -20,9 +20,10 @@
                         class="mx-auto">
                     <h1 class="text-center font-semibold text-xl">{{ $product->name }}</h1>
                     <p>{{ $product->description }}</p>
-                    <p>Price : {{ $product->price }}</p>
-                    <p>Stock : {{ $product->stock }}</p>
-                    <p>{{ $product->rate }}</p>
+                    <p><b>Price :</b> {{ $product->price }}</p>
+                    <p><b>Stock :</b> {{ $product->stock }}</p>
+                    <p><b>Terjual :</b> {{ $product->sold }}</p>
+                    <x-star :rate="$product->rate"></x-star>
                     <a href="{{ route('dashboard.product') }}"
                         class="text-center bg-yellow-400 py-4 text-white font-semibold rounded-lg w-full capitalize">beli
                         sekarang</a>
@@ -38,7 +39,7 @@
                             class="w-16 rounded-full">
                         <div class="flex flex-col">
                             <h1 class="text-lg font-semibold">{{ $testimoni->name }}</h1>
-                            <span>{{ $testimoni->rate }}</span>
+                            <x-star :rate="$testimoni->rate"></x-star>
                         </div>
                     </div>
                     <p class="px-4 py-2">{{ $testimoni->description }}</p>
