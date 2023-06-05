@@ -9,9 +9,10 @@
         @else
             @foreach ($historys as $history)
                 <div class="col-span-1 md:col-span-6 lg:col-span-4 rounded-xl shadow-xl p-6 flex flex-col gap-3">
+                    <img src="{{ asset('storage/' . $history->url_image) }}" alt="food-image" width="200" class="mx-auto">
                     <h1 class="text-center font-semibold text-xl">{{ $history->product_name }}</h1>
                     <p>Total Pembelian : {{ $history->quantity }}</p>
-                    <p>Jumlah Pembayaran : {{ $history->price }}</p>
+                    <p>Jumlah Pembayaran : Rp.{{ number_format($history->price, 0, ',', '.') }}</p>
                     <p>Status Pembayaran : {{ $history->status }}</p>
                     <p>Tanggal Pembelian : {{ $history->created_at }}</p>
                     @if ($history->status === 'success')

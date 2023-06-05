@@ -19,7 +19,7 @@
         @foreach ($products as $product)
             <div class="col-span-1 rounded-xl shadow-xl p-6 flex flex-col justify-between">
                 <div class="flex flex-col">
-                    <img src="{{ asset('storage/photo-profile/foto-adminleo.jpg') }}" alt="food-image" width="200"
+                    <img src="{{ asset('storage/' . $product->url_image) }}" alt="food-image" width="200"
                         class="mx-auto">
                     <h1 class="text-center font-semibold text-xl">{{ $product->name }}</h1>
                     <p>{{ $product->description }}</p>
@@ -34,7 +34,7 @@
                 @else
                     <div class="flex flex-col gap-2">
                         @if ($product->stock === 0)
-                            <input placeholder="Sorry Sold !" class="p-2 border-2 border-gray-300 w-full rounded-lg"
+                            <input placeholder="Stock Sudah Habis!!!" class="p-2 border-2 border-gray-300 w-full rounded-lg"
                                 disabled="true">
                             <button class="bg-gray-400 py-2 text-white font-semibold rounded-lg"
                                 disabled="true">Habis</button>

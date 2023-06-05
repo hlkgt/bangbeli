@@ -33,6 +33,12 @@
                     placeholder="Input email" value="{{ $user->email }}" readonly>
             </div>
             <div class="mb-4">
+                <label for="product_name" class="text-xl font-semibold capitalize mb-2">foto barang</label>
+                <img src="{{ asset('storage/' . $list['url_image']) }}" alt="food-image" width="200">
+                <input type="hidden" name="url_image" id="url_image" class="w-full p-2 outline-2 border-2 rounded-lg"
+                    placeholder="Input url image" value="{{ $list['url_image'] }}" readonly>
+            </div>
+            <div class="mb-4">
                 <label for="product_name" class="text-xl font-semibold capitalize mb-2">barang pembelian</label>
                 <input type="text" name="product_name" id="product_name" class="w-full p-2 outline-2 border-2 rounded-lg"
                     placeholder="Input name product" value="{{ $list['product_name'] }}" readonly>
@@ -52,8 +58,8 @@
             <div class="mb-4">
                 <label for="product_price" class="text-xl font-semibold capitalize mb-2">total pembayaran</label>
                 <input type="text" name="total_payment" id="total_payment"
-                    class="w-full p-2 outline-2 border-2 rounded-lg" placeholder="Input price" value="{{ $list['total'] }}"
-                    readonly>
+                    class="w-full p-2 outline-2 border-2 rounded-lg" placeholder="Input price"
+                    value="{{ $list['total'] }}" readonly>
             </div>
             <button class="py-3 bg-teal-400 text-lg w-full rounded-lg font-semibold text-white">Bayar</button>
         </form>
@@ -76,6 +82,7 @@
                         username: $("#username").val(),
                         user_id: $("#user_id").val(),
                         product_id: $("#product_id").val(),
+                        url_image: $("#url_image").val(),
                         product_name: $("#product_name").val(),
                         product_price: $("#total_payment").val(),
                         product_quantity: $("#product_quantity").val(),

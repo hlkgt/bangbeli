@@ -34,6 +34,7 @@ class PaymentController extends Controller
                 ->first();
             $product = Product::where('id', $request->id_product)->first();
             $list = [
+                'url_image' => $product->url_image,
                 'product_id' => $product->id,
                 'product_name' => $product->name,
                 'price' => $product->price,
@@ -66,6 +67,7 @@ class PaymentController extends Controller
             Payment::insert([
                 'order_id' => $orderId,
                 'user_id' => $request->user_id,
+                'url_image' => $request->url_image,
                 'product_name' => $request->product_name,
                 'price' => $request->product_price,
                 'quantity' => $request->product_quantity,

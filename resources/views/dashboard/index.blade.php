@@ -16,8 +16,7 @@
             <h1 class="col-span-12 text-center text-2xl font-bold">--- Menu Unggulan ---</h1>
             @foreach ($products as $product)
                 <div class="col-span-12 md:col-span-4 rounded-xl shadow-xl p-6 flex flex-col gap-2">
-                    <img src="{{ asset('storage/photo-profile/foto-adminleo.jpg') }}" alt="food-image" width="200"
-                        class="mx-auto">
+                    <img src="{{ asset('storage/' . $product->url_image) }}" alt="food-image" width="200" class="mx-auto">
                     <h1 class="text-center font-semibold text-xl">{{ $product->name }}</h1>
                     <p>{{ $product->description }}</p>
                     <p><b>Price :</b> {{ $product->price }}</p>

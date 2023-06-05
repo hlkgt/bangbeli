@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("categori_id");
+            $table->string("url_image");
             $table->string("name");
             $table->text("description");
             $table->string("price");
